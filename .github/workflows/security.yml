@@ -21,9 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install -r requirements.txt
-          pip3 install python-dotenv
-          pip3 install bandit pip-audit
+          pip install -r requirements.txt
 
       - name: Run Bandit (SAST)
         run: |
