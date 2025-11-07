@@ -141,3 +141,37 @@ access_token = create_access_token(identity=str(user.id))
 
 - SECRET_KEY используется для внутренней подписи Flask, JWT_SECRET_KEY — для подписи JWT-токенов.
 - Доступ к защищённым маршрутам обеспечивается декоратором @jwt_required().
+
+## CI/CD
+
+### Bandit (SAST)
+
+Bandit выполнил статический анализ исходного кода приложения.
+Найдено 1 предупреждение средней степени (binding to all interfaces), которое не является уязвимостью в контексте разработки.
+
+Отчёт: `bandit-report.json`
+![bandit1](img/bandit1.png)
+![bandit2](img/bandit2.png)
+![bandit3](img/bandit3.png)
+![bandit4](img/bandit4.png)
+Bandit обнаружил одно незначительное предупреждение о привязке к 0.0.0.0, что допустимо в условиях локальной разработки
+Итог: критических уязвимостей не обнаружено.
+
+---
+
+## pip-audit (SCA)
+
+![pip-audit1](img/pip-audit1.png)
+![pip-audit2](img/pip-audit2.png)
+![pip-audit3](img/pip-audit3.png)
+![pip-audit4](img/pip-audit4.png)
+![pip-audit5](img/pip-audit5.png)
+![pip-audit6](img/pip-audit6.png)
+pip-audit проверил все зависимости из `requirements.txt` на наличие известных CVE.
+Все зависимости безопасны, обновлений не требуется.
+
+Отчёт: `pip-audit-report.json`
+
+pip-audit не выявил уязвимостей
+Таким образом, приложение считается безопасным
+Итог: 0 уязвимостей.
