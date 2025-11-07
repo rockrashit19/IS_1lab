@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Bandit (SAST)
         run: |
-          bandit -r app -f json -o bandit-report.json
+          bandit -r . -f json -o bandit-report.json
         continue-on-error: true
 
       - name: Run pip-audit (SCA)
