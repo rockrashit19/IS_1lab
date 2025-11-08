@@ -52,4 +52,11 @@ def login():
     if not user or not bcrypt.check_password_hash(user.password_hash, password):
         return jsonify({"msg": "bad credentials"}), 401
 
-   
+    access_token = create_access_token(identity=str(user.id))
+    return jsonify({
+        "access_token": access_token,
+        "user": {
+            "username": escape(user.username),
+            "email": escape(user.email) if user.email else None
+        }
+    }), 200
